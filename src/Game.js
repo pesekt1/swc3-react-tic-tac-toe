@@ -45,7 +45,7 @@ class Game extends React.Component {
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    squares[i] = (this.state.xIsNext) ? 'X' : 'O';
     this.setState({
       history: history.concat([{
         squares: squares
@@ -63,6 +63,9 @@ class Game extends React.Component {
       status = 'Winner: ' + winner;
     }else{
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    }
+    if (this.state.stepNumber === 9){
+      status = "Draw";
     }
     const moves = history.map((step, move) => {
       const desc = move ? 'Move #' + move : 'Game start';
